@@ -20,7 +20,13 @@ string disassemble( string hex ) {
     string rs = "";
     string rt = "";
     int hexNum = stoi(hex, 0, 16);
-    cout << hexNum << endl;
+    int opcodeNum = hexNum >> 26;
+    int rsNum = hexNum >> 21;
+    rsNum = rsNum & 0x1F;
+    int rtNum = hexNum >> 16;
+    rtNum = rtNum & 0x1F;
+    int immediateNum = hexNum & 0xFFFF;
+    
     // You want to retrieve all the separate fields of an I-type instruction
     //      to help you figure out what the assembly instruction is.
     //
@@ -28,25 +34,28 @@ string disassemble( string hex ) {
     //      different parts of the hex instruction!
     
     //all the opcode options
-    if(opcode == "01000"){
+    if(opcodeNum == 01000){
         instruct += "addi ";
     }
-    else if(opcode == "01000"){
+    else if(opcodeNum == 01001){
         instruct += "addiu ";
     }
-    else if(opcode == "01000"){
+    else if(opcodeNum == 01100){
         instruct += "andi ";
     }
-    else if(opcode == "01000"){
+    else if(opcodeNum == 01101){
         instruct += "ori ";
     }
-    else if(opcode == "01000"){
+    else if(opcodeNum == 01010){
         instruct += "slti ";
     }
-    else if(opcode == "01000"){
+    else if(opcodeNum == 01011){
         instruct += "sltiu ";
     }
-    
+
+    instruct += to_string(rtNum) +", ";
+    instruct += to_string(rsNum)+", ";
+    instruct += to_string(immediateNum);
    
     //all the register options for rt then rs
     
