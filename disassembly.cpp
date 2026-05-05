@@ -22,7 +22,7 @@ string disassemble( string hex ) {
     rsNum = rsNum & 0x1F;
     int rtNum = hexNum >> 16;
     rtNum = rtNum & 0x1F;
-    int immediateNum = hexNum & 0xFFFF;
+    short immediateNum = hexNum & 0xFFFF;
     
     // You want to retrieve all the separate fields of an I-type instruction
     //      to help you figure out what the assembly instruction is.
