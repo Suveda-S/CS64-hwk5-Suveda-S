@@ -16,9 +16,6 @@ using namespace std;
 //
 string disassemble( string hex ) {
     string instruct = "";
-    string opcode = "";
-    string rs = "";
-    string rt = "";
     int hexNum = stoi(hex, 0, 16);
     int opcodeNum = hexNum >> 26;
     int rsNum = hexNum >> 21;
@@ -34,32 +31,29 @@ string disassemble( string hex ) {
     //      different parts of the hex instruction!
     
     //all the opcode options
-    if(opcodeNum == 01000){
+    if(opcodeNum == 0x01000){
         instruct += "addi ";
     }
-    else if(opcodeNum == 01001){
+    else if(opcodeNum == 0x01001){
         instruct += "addiu ";
     }
-    else if(opcodeNum == 01100){
+    else if(opcodeNum == 0x01100){
         instruct += "andi ";
     }
-    else if(opcodeNum == 01101){
+    else if(opcodeNum == 0x01101){
         instruct += "ori ";
     }
-    else if(opcodeNum == 01010){
+    else if(opcodeNum == 0x01010){
         instruct += "slti ";
     }
-    else if(opcodeNum == 01011){
+    else if(opcodeNum == 0x01011){
         instruct += "sltiu ";
     }
 
-    instruct += to_string(rtNum) +", ";
-    instruct += to_string(rsNum)+", ";
+    string registersArray[24] ={"","","","","","","","","$t0","$t1","$t2","$t3","$t4","$t5","$t6","$t7","$s0","$s1","$s2","$s3","$s4","$s5","$s6","$s7"};
+    instruct += registersArray[rtNum] +", ";
+    instruct += registersArray[rsNum] +", ";
     instruct += to_string(immediateNum);
-   
-    //all the register options for rt then rs
-    
-
     
     return instruct;  // remove stub and replace it with correct variable
 }
