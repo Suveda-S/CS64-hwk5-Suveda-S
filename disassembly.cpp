@@ -31,22 +31,22 @@ string disassemble( string hex ) {
     //      different parts of the hex instruction!
     
     //all the opcode options
-    if(opcodeNum == 0x01000){
+    if(opcodeNum == 0x08){
         instruct += "addi ";
     }
-    else if(opcodeNum == 0x01001){
+    else if(opcodeNum == 0x09){
         instruct += "addiu ";
     }
-    else if(opcodeNum == 0x01100){
+    else if(opcodeNum == 0x0C){
         instruct += "andi ";
     }
-    else if(opcodeNum == 0x01101){
+    else if(opcodeNum == 0x0D){
         instruct += "ori ";
     }
-    else if(opcodeNum == 0x01010){
+    else if(opcodeNum == 0x0A){
         instruct += "slti ";
     }
-    else if(opcodeNum == 0x01011){
+    else if(opcodeNum == 0x0B){
         instruct += "sltiu ";
     }
 
